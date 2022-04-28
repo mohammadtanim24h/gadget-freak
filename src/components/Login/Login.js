@@ -1,9 +1,18 @@
-import React from 'react';
+import React from "react";
+import auth from "../../Firebase/firebase.init";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 
 const Login = () => {
+    const [signInWithGoogle, user] = useSignInWithGoogle(auth);
     return (
-        <div>
-            <h2>Please Login</h2>
+        <div className="container d-flex justify-content-center align-items-center">
+            <div className="mt-3 text-center">
+                <h3>Please Login</h3>
+                <button className="btn btn-primary px-4 py-2" onClick={() => signInWithGoogle()}>
+                    <i className="fa-brands fa-google me-2"></i>
+                    Sign in With Google
+                </button>
+            </div>
         </div>
     );
 };
