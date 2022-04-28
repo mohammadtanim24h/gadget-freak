@@ -18,7 +18,7 @@ const Products = () => {
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify({name: product.name, price: product.price, email: product.email})
+            body: JSON.stringify({name: product.name, price: product.price, email: user.email})
         })
         .then(res => res.json())
         .then(data => console.log(data))
