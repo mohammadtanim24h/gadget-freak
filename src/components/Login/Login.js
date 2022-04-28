@@ -10,7 +10,18 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
     useEffect(() => {
         if (user) {
-            navigate(from, { replace: true });
+            fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({email: user.user.email})
+            })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem("accessToken", data.token)
+                navigate(from, { replace: true });
+            })
         }
     }, [user]);
     return (
